@@ -8,17 +8,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: executing remote ssh commands using token
+      - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
           host: ${{secrets.SSH_HOST}}
           username: ${{ secrets.SSH_USERNAME }}
-          key: ${{secrets.TOKEN}}
+          password: ${{ secrets.SSH_PASSWORD }}
           script: |
             pm2 stop all
             pm2 delete all
             rm -rf blog-node/
-            git clone git@github.com:TerryZvk/blog-node.git # clone the repo 
+            git clone git://github.com/TerryZvk/blog-node.git # clone the repo into the 'app' folder
             cd blog-node # navigate into the repo
             npm install # install dependencies 
             pm2 start app.js # start as a background service.
