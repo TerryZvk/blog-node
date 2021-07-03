@@ -16,8 +16,8 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             pm2 kill all
-            rm -rf blog-node/
+            rm -rf blog-node
             git clone git://github.com/TerryZvk/blog-node.git # clone the repo into the 'app' folder
             cd blog-node # navigate into the repo
             npm install # install dependencies 
-            pm2 start app.js # start as a background service.
+            pm2 start ./bin/www # start as a background service.
