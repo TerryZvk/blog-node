@@ -15,8 +15,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            pm2 stop all
-            pm2 delete all
+            pm2 kill all
             rm -rf blog-node/
             git clone git://github.com/TerryZvk/blog-node.git # clone the repo into the 'app' folder
             cd blog-node # navigate into the repo
